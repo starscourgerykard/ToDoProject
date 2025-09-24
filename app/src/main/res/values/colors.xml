@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores base -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta principal -->
+    <color name="primary_blue">#1976D2</color>
+    <color name="primary_blue_dark">#1565C0</color>
+    <color name="primary_blue_light">#BBDEFB</color>
+
+    <color name="success_green">#4CAF50</color>
+    <color name="success_green_light">#C8E6C9</color>
+
+    <color name="accent_orange">#FF9800</color>
+    <color name="accent_orange_light">#FFE0B2</color>
+
+    <color name="delete_red">#F44336</color>
+    <color name="delete_red_light">#FFCDD2</color>
+
+    <!-- Fondos y superficies -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="card_background">#F8F9FA</color>
+
+    <!-- Textos -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_completed">#9E9E9E</color>
+    <color name="text_hint">#BDBDBD</color>
+
+    <!-- Bordes y dividers -->
+    <color name="divider_light">#E0E0E0</color>
+    <color name="border_light">#EEEEEE</color>
 </resources>

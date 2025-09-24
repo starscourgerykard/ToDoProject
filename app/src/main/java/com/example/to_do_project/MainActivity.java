@@ -4,14 +4,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,9 +25,10 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
     private RecyclerView recyclerViewTasks;
     private TaskAdapter taskAdapter;
     private List<Task> taskList;
-    private EditText editTextNewTask;
-    private Button buttonAddTask;
-    private TextView textViewEmpty;
+    private TextInputEditText editTextNewTask;
+    private FloatingActionButton buttonAddTask;
+    private LinearLayout layoutEmpty;
+    private TextView textViewTaskCount;
 
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "TodoPrefs";
@@ -59,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
         editTextNewTask = findViewById(R.id.editTextNewTask);
         buttonAddTask = findViewById(R.id.buttonAddTask);
-        textViewEmpty = findViewById(R.id.textViewEmpty);
+        layoutEmpty = findViewById(R.id.layoutEmpty);
+        textViewTaskCount = findViewById(R.id.textViewTaskCount);
     }
 
     private void setupRecyclerView() {
@@ -119,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
             // Guardar cambios
             saveTasks();
 
+            // Actualizar contador
+            updateEmptyView();
+
             String message = isCompleted ? "Tarea completada" : "Tarea marcada como pendiente";
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
@@ -169,12 +176,25 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
     }
 
     private void updateEmptyView() {
+        // Actualizar contador de tareas
+        int pendingTasks = 0;
+        for (Task task : taskList) {
+            if (!task.isCompleted()) {
+                pendingTasks++;
+            }
+        }
+
+        String taskCountText = pendingTasks == 0 ? "🎉 Todas las tareas completadas" :
+                pendingTasks + " tarea" + (pendingTasks > 1 ? "s" : "") + " pendiente" + (pendingTasks > 1 ? "s" : "");
+        textViewTaskCount.setText(taskCountText);
+
+        // Mostrar/ocultar vista vacía
         if (taskList.isEmpty()) {
             recyclerViewTasks.setVisibility(View.GONE);
-            textViewEmpty.setVisibility(View.VISIBLE);
+            layoutEmpty.setVisibility(View.VISIBLE);
         } else {
             recyclerViewTasks.setVisibility(View.VISIBLE);
-            textViewEmpty.setVisibility(View.GONE);
+            layoutEmpty.setVisibility(View.GONE);
         }
     }
 
