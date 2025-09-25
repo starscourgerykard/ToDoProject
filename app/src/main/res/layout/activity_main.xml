@@ -9,7 +9,6 @@
     android:background="@color/background_light"
     tools:context=".MainActivity">
 
-    <!-- Header con gradiente -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,62 +35,43 @@
             android:text="0 tareas pendientes"
             android:textSize="16sp"
             android:gravity="center"
-            android:textColor="@color/primary_blue_light"
-            android:fontFamily="sans-serif" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
-    <!-- Card para agregar nueva tarea -->
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/surface_white"
+        android:elevation="4dp"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="@color/surface_white">
+        android:baselineAligned="false">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNewTask"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:hint="Escribe una nueva tarea..."
+            android:inputType="textCapSentences"
+            android:singleLine="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="12dp"
-                app:boxStrokeColor="@color/primary_blue"
-                app:hintTextColor="@color/primary_blue"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonAddTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@android:drawable/ic_input_add"
+            app:fabSize="mini"
+            app:tint="@android:color/white"
+            app:backgroundTint="@color/accent_blue"
+            android:contentDescription="Agregar tarea" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextNewTask"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Escribe una nueva tarea..."
-                    android:textSize="16sp"
-                    android:textColor="@color/text_primary"
-                    android:maxLines="2" />
+    </LinearLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/buttonAddTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_input_add"
-                app:backgroundTint="@color/success_green"
-                app:tint="@color/white"
-                app:fabSize="normal"
-                android:contentDescription="Agregar tarea" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- RecyclerView para la lista de tareas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTasks"
         android:layout_width="match_parent"
@@ -101,7 +81,6 @@
         android:clipToPadding="false"
         android:scrollbars="vertical" />
 
-    <!-- Estado vacío con ilustración -->
     <LinearLayout
         android:id="@+id/layoutEmpty"
         android:layout_width="match_parent"
@@ -139,5 +118,14 @@
             android:lineSpacingExtra="4dp" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonGoToWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abrir Bienvenida"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:onClick="goToWelcomeScreen" />
 
 </LinearLayout>

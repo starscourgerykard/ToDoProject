@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent; // Importa la clase Intent
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -203,5 +204,11 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnTas
         super.onPause();
         // Guardar tareas cuando la app se pausa
         saveTasks();
+    }
+
+    // Nuevo método para ir a la pantalla de bienvenida
+    public void goToWelcomeScreen(View view) {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
     }
 }
